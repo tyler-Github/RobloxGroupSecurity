@@ -33,6 +33,9 @@ npm install
   KEYWORDS=keyword1,keyword2,keyword3
   GROUP_ID=your-group-id
   ROBLOX_TOKEN=your-roblox-token
+  RUN_INTERVAL_MINUTES=1 - for example
+  AUTO_RERUN_ENABLED=true or false
+  GENERATE_HTML_REPORT=true or false
   ```
 
 ## Usage
