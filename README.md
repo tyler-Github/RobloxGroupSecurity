@@ -57,7 +57,7 @@ The script will start fetching posts from the specified Roblox group, check for 
 - Adjust the delay (`delay` function) in `index.js` to avoid rate limits based on Roblox API usage policies.
 - The HTML report (`report.html`) includes both deleted posts and safe posts that did not meet deletion criteria.
 
-# You can view a live example of the generated report [here](https://statify.vmgware.dev/api/public/report.html).
+## You can view a live example of the generated report [here](https://statify.vmgware.dev/api/public/report.html).
 
 The report provides a comprehensive overview of the activity related to Roblox group security. It details posts that were deleted based on specified keywords and includes information on posts that were considered safe. This can be invaluable for understanding the impact of automated moderation processes on your group's content.
 
