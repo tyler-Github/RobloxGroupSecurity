@@ -150,8 +150,8 @@ const generateHTMLReport = async (deletedPosts, totalChecked) => {
         </html>
         `;
 
-        await fs.writeFile('deleted_posts_report.html', htmlContent);
-        console.log('\x1b[32mHTML report generated: deleted_posts_report.html\x1b[0m');  // Green text
+        await fs.writeFile('report.html', htmlContent);
+        console.log('\x1b[32mHTML report generated: report.html\x1b[0m');  // Green text
 
         // Open the generated report in default browser based on platform
         await openInBrowser();
@@ -165,11 +165,11 @@ const generateHTMLReport = async (deletedPosts, totalChecked) => {
 const openInBrowser = async () => {
     try {
         if (process.platform === 'win32') {
-            await exec('start deleted_posts_report.html');
+            await exec('start report.html');
         } else if (process.platform === 'darwin') {
-            await exec('open deleted_posts_report.html');
+            await exec('open report.html');
         } else {
-            await exec('xdg-open deleted_posts_report.html');
+            await exec('xdg-open report.html');
         }
     } catch (error) {
         console.error('Error opening file in browser:', error);
