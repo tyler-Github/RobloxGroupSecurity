@@ -57,6 +57,29 @@ The script will start fetching posts from the specified Roblox group, check for 
 - Adjust the delay (`delay` function) in `index.js` to avoid rate limits based on Roblox API usage policies.
 - The HTML report (`report.html`) includes both deleted posts and safe posts that did not meet deletion criteria.
 
+# You can view a live example of the generated report [here](https://statify.vmgware.dev/api/public/report.html).
+
+The report provides a comprehensive overview of the activity related to Roblox group security. It details posts that were deleted based on specified keywords and includes information on posts that were considered safe. This can be invaluable for understanding the impact of automated moderation processes on your group's content.
+
+### Insights from the Example Report
+
+- **Deleted Posts:** Lists posts that matched the deletion criteria specified by the keywords.
+- **Safe Posts:** Includes posts that did not meet the deletion criteria and were left untouched.
+- **Timestamps:** Each entry in the report includes timestamps to track when posts were processed.
+
+### How to Interpret the Report
+
+The report serves as a log of actions taken by the Node.js script, offering transparency into the moderation activities performed on your Roblox group. It helps in maintaining community guidelines and ensuring content alignment with group standards.
+
+### Usage Recommendations
+
+- **Regular Review:** Periodically review the report to ensure the script is functioning correctly and that the deletion criteria are aligned with current community standards.
+- **Adjustment of Keywords:** Modify the `KEYWORDS` environment variable in the `.env` file to refine the script's criteria for post deletion based on evolving content trends.
+
+### Conclusion
+
+By leveraging automated moderation through this Node.js script and utilizing the generated HTML report, you can effectively manage content within your Roblox group, promoting a safe and engaging environment for all members.
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
