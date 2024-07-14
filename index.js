@@ -7,6 +7,9 @@ const { initializeNoblox, getCSRFToken } = require('./auth');
 const keywords = process.env.KEYWORDS ? process.env.KEYWORDS.split(',') : [];
 const groupId = process.env.GROUP_ID;
 const robloxToken = process.env.ROBLOX_TOKEN;
+const runInterval = parseInt(process.env.RUN_INTERVAL_MINUTES || '60', 10); // Default to 60 minutes
+const autoRerunEnabled = process.env.AUTO_RERUN_ENABLED === 'true';
+const generateHtmlReport = process.env.GENERATE_HTML_REPORT === 'true';
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -179,6 +182,11 @@ const openInBrowser = async () => {
     }
 };
 
+const shouldRerun = () => {
+    // Check if auto rerun is enabled and runInterval is valid
+    return autoRerunEnabled && !isNaN(runInterval) && runInterval > 0;
+};
+
 const massDeleteMessages = async () => {
     try {
         await initializeNoblox();
@@ -229,7 +237,18 @@ const massDeleteMessages = async () => {
 
         console.log(`\x1b[33mFinished processing all posts. Total posts checked: ${totalChecked}\x1b[0m`);  // Yellow text
 
-        await generateHTMLReport(deletedPosts, totalChecked);
+        // Generate HTML report if enabled
+        if (generateHtmlReport) {
+            await generateHTMLReport(deletedPosts, totalChecked);
+        }
+
+        // Check if auto rerun is enabled and runInterval is valid, then rerun after delay
+        if (shouldRerun()) {
+            console.log(`\x1b[33mWaiting ${runInterval} minutes before rerunning...\x1b[0m`);
+            await delay(runInterval * 60 * 1000); // Convert minutes to milliseconds
+            console.log(`\x1b[33mRerunning mass delete operation...\x1b[0m`);
+            await massDeleteMessages();
+        }
     } catch (error) {
         console.error(`\x1b[31mError during mass deletion:\x1b[0m`, error.response ? error.response.data : error.message);  // Red text
     }
