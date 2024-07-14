@@ -1,4 +1,4 @@
-# Roblox Group Secure
+# Roblox Group Security
 
 ## Description
 
