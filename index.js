@@ -117,13 +117,17 @@ const generateHTMLReport = async (deletedPosts, totalChecked) => {
 
         // Loop through each post in deletedPosts array
         deletedPosts.forEach(post => {
+            // Ensure poster information is available or provide defaults
+            const username = post.poster && post.poster.username ? post.poster.username : 'Unknown';
+            const displayName = post.poster && post.poster.displayName ? post.poster.displayName : 'Unknown';
+
             htmlContent += `
             <div class="py-4 post-content" id="post-${post.id}">
                 <div class="flex justify-between items-center">
                     <div>
                         <p class="font-bold text-lg ${post.deleted ? 'post-fail' : 'post-success'}">Post ID: ${post.id}</p>
-                        <p class="text-sm post-info">Username: ${post.poster.username}</p>
-                        <p class="text-sm post-info">Display Name: ${post.poster.displayName}</p>
+                        <p class="text-sm post-info">Username: ${username}</p>
+                        <p class="text-sm post-info">Display Name: ${displayName}</p>
                         <p class="text-sm post-info">Created: ${new Date(post.created).toLocaleString()}</p>
                         <button class="dropdown-btn" onclick="toggleBody(${post.id})">Show ${post.deleted ? 'Failed' : 'Safe'} Post Details</button>
                         <div class="post-body ${post.deleted ? 'show-body' : ''}" id="post-body-${post.id}">
@@ -159,7 +163,6 @@ const generateHTMLReport = async (deletedPosts, totalChecked) => {
         console.error('\x1b[31mError generating HTML report:\x1b[0m', error);
     }
 };
-
 
 // Function to open HTML report in default browser based on platform
 const openInBrowser = async () => {
