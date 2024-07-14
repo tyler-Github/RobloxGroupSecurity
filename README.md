@@ -10,6 +10,8 @@ This Node.js script automates the deletion of posts in a Roblox group based on s
 - Deletes posts containing specified keywords.
 - Generates an HTML report with detailed information on deleted and safe posts.
 - Opens the generated HTML report in the default browser.
+- Allows for re-runs with a timer.
+- Reports are optional but give insight on what is being deleted.
 
 ## Installation
 
